@@ -20,19 +20,19 @@ spec:
       containers:
         - resources: {}
           env:
-        - name: PORT
-          value: {{ .Values.containers.containerPort | quote }}
+          - name: PORT
+            value: {{ .Values.containers.containerPort | quote }}
          livenessProbe:
-                      httpGet:
-                        path: /health/liveliness
-                        port: {{ .Values.containers.containerPort }}
-                        scheme: HTTP
-                      initialDelaySeconds: 1
-                      timeoutSeconds: 1
-                      periodSeconds: 10
-                      successThreshold: 1
-                      failureThreshold: 3
-           readinessProbe:
+          httpGet:
+            path: /health/liveliness
+            port: {{ .Values.containers.containerPort }}
+            scheme: HTTP
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+         readinessProbe:
                     httpGet:
                       path: /health/readiness # this check the application url path
                       port: {{ .Values.containers.containerPort  }} # In which port the Application is listening
