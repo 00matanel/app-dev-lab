@@ -22,7 +22,7 @@ spec:
           env:
         - name: PORT
           value: {{ .Values.containers.containerPort | quote }}
-          livenessProbe:
+         livenessProbe:
                       httpGet:
                         path: /health/liveliness
                         port: {{ .Values.containers.containerPort }}
