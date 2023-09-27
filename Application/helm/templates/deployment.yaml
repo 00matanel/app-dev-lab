@@ -19,6 +19,9 @@ spec:
             defaultMode: 420
       containers:
         - resources: {}
+          volumeMounts:
+           - name: index-html
+             mountPath: /tmp/html 
           terminationMessagePath: /dev/termination-log
           name: {{ .Release.Name }}
           ports:
@@ -30,9 +33,7 @@ spec:
         
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
-         volumeMounts:
-          - name: index-html
-            mountPath: /tmp/html 
+     
   strategy:
     type: RollingUpdate
     rollingUpdate:
