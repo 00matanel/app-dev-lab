@@ -35,7 +35,7 @@ spec:
             periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
             successThreshold: {{ .Values.probes.readiness.successThreshold }}
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
-          livenessProbe: 
+          livenessProbe: |
             {{- tpl (toYaml .Values.Probes.liveness) . | nindent 12 }}
 
           # livenessProbe:
