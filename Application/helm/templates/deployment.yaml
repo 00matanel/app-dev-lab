@@ -27,7 +27,7 @@ spec:
             mountPath: {{ .Values.probes.volume.mount.path }}
           readinessProbe:
             httpGet:
-              path: {{ .Values.probes.readiness.path }}
+              path: {{ .Values.containers.pathreadiness }}
               port: {{ .Values.containers.containerPort  }} # In which port the Application is listening
               scheme: HTTP
             initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
@@ -37,7 +37,7 @@ spec:
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
           livenessProbe: 
             httpGet:
-              path: {{ .Values.probes.liveness.path }}
+              path: {{ .Values.containers.pathliveness }}
               port: {{ .Values.containers.containerPort }}
               scheme: HTTP
            {{- tpl (toYaml .Values.probes.liveness) . | nindent 12 }}
