@@ -37,8 +37,6 @@ spec:
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
           livenessProbe: 
            {{- tpl (toYaml .Values.probes.liveness) . | nindent 12 }}
-
-      
           env:
             - name: PORT
               value: {{ .Values.containers.containerPort | quote }}
