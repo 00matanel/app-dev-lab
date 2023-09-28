@@ -4,8 +4,7 @@ metadata:
 # set your lab user name
   name: {{ .Release.Name }}
   annotations:
-    argocd.argoproj.io/sync-options: |
-      {"automated": true, "prune": true, "selfHeal": true}
+        checksum/config: {{ include (print $.Template.BasePath "/ConfigMap.yaml") . | sha256sum }}
 spec:
   replicas: {{ .Values.ReplicaNumber }}
   selector:
