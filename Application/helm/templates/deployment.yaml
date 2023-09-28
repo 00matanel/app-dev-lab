@@ -3,6 +3,9 @@ apiVersion: apps/v1
 metadata:
 # set your lab user name
   name: {{ .Release.Name }}
+  annotations:
+    argocd.argoproj.io/sync-options: |
+      {"automated": true, "prune": true, "selfHeal": true}
 spec:
   replicas: {{ .Values.ReplicaNumber }}
   selector:
