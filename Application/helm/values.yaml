@@ -51,4 +51,7 @@ probes:
     periodSeconds: 10
     successThreshold: 1
     failureThreshold: 3
+   volume:
+    mount:
+     path: /your/mountPath
 

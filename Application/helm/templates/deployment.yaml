@@ -35,16 +35,19 @@ spec:
             periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
             successThreshold: {{ .Values.probes.readiness.successThreshold }}
             failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
-          livenessProbe:
-            httpGet:
-              path: {{ .Values.probes.liveness.path }}
-              port: {{ .Values.containers.containerPort }}
-              scheme: HTTP
-            initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
-            timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
-            periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
-            successThreshold: {{ .Values.probes.liveness.successThreshold }}
-            failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
+          livenessProbe: |
+            {{- tpl (toYaml .Values.Probes.liveness) . | nindent 6 }}
+
+          # livenessProbe:
+          #   httpGet:
+          #     path: {{ .Values.probes.liveness.path }}
+          #     port: {{ .Values.containers.containerPort }}
+          #     scheme: HTTP
+          #   initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
+          #   timeoutSeconds: {{ .Values.probes.liveness.timeoutSeconds }}
+          #   periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+          #   successThreshold: {{ .Values.probes.liveness.successThreshold }}
+          #   failureThreshold: {{ .Values.probes.liveness.failureThreshold }}
           env:
             - name: PORT
               value: {{ .Values.containers.containerPort | quote }}
